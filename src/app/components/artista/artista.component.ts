@@ -9,14 +9,14 @@ import { SpotifyService } from '../../services/spotify.service';
 export class ArtistaComponent {
 
   artista: any = {};
-  loading: boolean;
+  loadingArtist: boolean;
 
   constructor(
     private router: ActivatedRoute,
     private spotify: SpotifyService
   ) {
+    this.loadingArtist = true;
     this.router.params.subscribe(params => {
-      this.loading = true;
       this.getArtista(params['id']);
     });
   }
@@ -26,7 +26,7 @@ export class ArtistaComponent {
     .subscribe(artista => {
       console.log(artista);
       this.artista = artista;
-      this.loading = false;
+      this.loadingArtist = false;
     });
   }
 }
